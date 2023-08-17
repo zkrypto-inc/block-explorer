@@ -47,3 +47,33 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution and pull request protoco
 [![License: GPL v3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
+
+## How to run with Besu private network
+
+```bash
+git clone https://github.com/zkrypto-inc/block-explorer/
+cd block-explorer
+```
+
+Set variables as follows:
+```bash
+### docker-compose/envs/common-blockscout.env
+ETHEREUM_JSONRPC_VARIANT=besu
+ETHEREUM_JSONRPC_HTTP_URL=http://...  # endpoint url
+ETHEREUM_JSONRPC_TRACE_URL=http://... # endpoint url
+```
+
+Start docker-compose:
+```bash
+cd docker-compose
+docker-compose up --build
+```
+
+To initialize blockscout and database:
+```bash
+cd docker-compose
+docker-compose down # remove containers
+
+rm -rf logs
+rm -rf services/blockscout-db-data services/redis-data
+```
